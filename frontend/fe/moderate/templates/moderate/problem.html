@@ -1,0 +1,15 @@
+{% extends "moderate/base.html" %}
+
+{% block title %}
+Report Problem
+{% endblock %}
+
+{% block content %}
+<h3 style="color:rgb(243, 133, 133)">Report Problem</h3>
+<form method="POST" action="thankyou">
+    {% csrf_token %}
+    <textarea name="problem" rows = "8" cols= "60" autofocus placeholder="Problem Description"></textarea><br>
+    {% csrf_token %}
+    <input type = "submit" style="background-color: rgb(244, 175, 175); color: rgb(104, 2, 2);">
+</form>
+{% endblock %}

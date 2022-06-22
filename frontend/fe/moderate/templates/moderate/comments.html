@@ -1,0 +1,50 @@
+{% extends "moderate/base.html" %}
+{% load readmore %}
+{% block title %}View List{% endblock %}
+
+{% block content %}
+    <h1><u>{{text}}</u></h1>
+        <h2 style="background-color:rgb(245, 208, 123)">The Rating is: {{rating}}</h2>
+        <h3>Comments:</h3>
+        <p style="font-size:1.5vw; border:rgb(255, 239, 65); border-width:5px; border-style:solid;">{{comment1|readmore:100}}</p>
+        <p style="font-size:1.5vw; border:rgb(189, 189, 189); border-width:5px; border-style:solid;">{{comment2|readmore:100}}</p>
+        <p style="font-size:1.5vw; border:rgb(252, 173, 54); border-width:5px; border-style:solid;">{{comment3|readmore:100}}</p>
+    <br>
+    <br>
+    <div id="container" style="width: 75%;">
+        <canvas id="pie-chart"></canvas>
+     </div>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script><script>
+        var config = {
+          type: 'pie',
+          data: {
+            datasets: [{
+              data: {{emotions|safe}},
+              backgroundColor: [
+                '#F3F934', '#FA471F', '#39F922', '#E673F9', '#0000ff'
+              ],
+              label: 'Emotions'
+            }],
+            labels: ['Happy', 'Angry', 'Surprise', 'Sad', 'Fear']
+          },
+          options: {
+            responsive: true,
+            legend:{
+                position:"right"
+            }
+          }
+        };
+     
+        window.onload = function() {
+          var ctx = document.getElementById('pie-chart').getContext('2d');
+          window.myPie = new Chart(ctx, config);
+        };
+      </script>
+    <br>
+    <br>
+    <br>
+<button style="float: right; height:50px; width:100px; background-color: rgb(236, 134, 134);" onclick="location.href = '/problem/'"><b>Report Problem</b></button>
+<br>
+<br>
+<br>
+{% endblock %}

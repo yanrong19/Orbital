@@ -1,0 +1,16 @@
+{% extends "moderate/base.html" %}
+
+{% block title %}
+Find Module
+{% endblock %}
+
+{% block content %}
+<h3 style="color:rgb(243, 133, 133)">Find Module</h3>
+<br>
+<form method="POST" action="comments">
+    {% csrf_token %}
+    <input name = "mod" type="text" autofocus placeholder="Module Code">
+    {% csrf_token %}
+    <input type = "submit" style="background-color: rgb(244, 175, 175); color: rgb(104, 2, 2);">
+</form>
+{% endblock %}
